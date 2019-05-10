@@ -55,3 +55,35 @@ cut -f 6-7 sts-dev.csv > STS.input.sts-dev.txt
 cut -f5 sts-train.csv > STS.gs.sts-train.txt
 cut -f 6-7 sts-train.csv > STS.input.sts-train.txt
 ```
+
+### Tokenize w/StanfordNLP ("en_ewt")
+
+```bash
+scripts/tokenize_STSinput_by_stanfordnlp.py data/stsbenchmark/STS.input.sts-train{.txt,.words.en_ewt.joblib}
+scripts/tokenize_STSinput_by_stanfordnlp.py data/stsbenchmark/STS.input.sts-dev{.txt,.words.en_ewt.joblib}
+scripts/tokenize_STSinput_by_stanfordnlp.py data/stsbenchmark/STS.input.sts-test{.txt,.words.en_ewt.joblib}
+```
+
+
+# Data Preparation (for reproducibility)
+
+## Tokenizer
+
+### StanformdNLP
+<https://stanfordnlp.github.io/stanfordnlp/>
+
+```bash
+pip install stanfordnlp
+# $ brew install libomp # for torch in macOS?
+```
+
+```python
+>>> import stanfordnlp
+>>> stanfordnlp.download('en') # This downloads the English models
+```
+
+> Using the default treebank "en_ewt" for language "en".
+> Would you like to download the models for: en_ewt now? (Y/n)
+
+> Default download directory: `~/stanfordnlp_resources`
+> Hit enter to continue or type an alternate directory.
