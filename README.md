@@ -1,17 +1,48 @@
 # data-sts
 
+# Format
 
-# Dataset
+## sentence pairs
+
+- `STS.input.foo.txt` (original)
+    - TSV file including sentence pairs
+    - each line is of the form: sent1[TAB]sent2
+
+- ` STS.input.foo.words.en_ewt.joblib` (tokenized by StanformdNLP)
+    - joblib formatted file
+    - list of words pairs
+
+        ```python
+        [
+            (['This', 'is', 'first', 'sentence', '.'], ['This', 'is', 'second', 'sentence', '.']),
+            (['foo', 'bar', ...], ['hoge', 'fuga', ...]),
+            ...
+        ]
+        ```
+
+## gold scores
+
+- `STS.gs.foo.txt`
+    - each line gold scores (sentence similarities)
+
+
+
+# List of Dataset
 
 ## STS-B
 
+`data/stsbenchmark`
+
 ### Web
+
 <http://ixa2.si.ehu.es/stswiki/index.php/STSbenchmark>
 
 ### Stats
+
 <http://ixa2.si.ehu.es/stswiki/index.php/STSbenchmark>
 
-### Data Preparation
+### Log of Data Preparation (for reproducibility)
+
 ```bash
 wget http://ixa2.si.ehu.es/stswiki/images/4/48/Stsbenchmark.tar.gz -P data
 tar xvzf data/Stsbenchmark.tar.gz -C data
