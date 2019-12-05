@@ -3,6 +3,7 @@ import subprocess
 import joblib
 import pandas as pd
 import stanfordnlp
+from sacremoses import MosesDetokenizer
 from tqdm import tqdm
 
 subprocess.run(
@@ -35,9 +36,10 @@ def tokenize(text):
 
 df = pd.read_csv("paws_qqp/dev_and_test_restored.tsv", sep="\t").dropna()
 
-# strip `b"`
-df["sentence1"] = df.sentence1.str[2:-1]
-df["sentence2"] = df.sentence2.str[2:-1]
+# strip `b"` and detokenize
+md = MosesDetokenizer()
+df["sentence1"] = df.sentence1.str[2:-1].apply(lambda s: md.detokenize(s.split()))
+df["sentence2"] = df.sentence2.str[2:-1].apply(lambda s: md.detokenize(s.split()))
 
 df[["sentence1", "sentence2"]].to_csv(
     "STS.input.paws-qqp.txt", header=False, index=False, sep="\t"
