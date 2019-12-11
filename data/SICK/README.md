@@ -1,0 +1,7 @@
+- `STS.gs.SICK_test_annotated.relatedness.txt`
+    - gold scores
+- `STS.input.SICK_test_annotated.relatedness.words.en_ewt.joblib`
+    - sentence pairs
+- `STS.input.SICK_test_annotated.relatedness.txt`
+    - sentence pairs (tokenized)
+    - usage: (Python) `joblib.load(path_to_file)`
